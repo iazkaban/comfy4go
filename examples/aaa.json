@@ -1,0 +1,459 @@
+{
+  "1": {
+    "inputs": {
+      "seed": 513100894883196,
+      "steps": 40,
+      "cfg": 4,
+      "sampler_name": "euler",
+      "scheduler": "normal",
+      "denoise": 1,
+      "model": [
+        "14",
+        0
+      ],
+      "positive": [
+        "58",
+        0
+      ],
+      "negative": [
+        "58",
+        1
+      ],
+      "latent_image": [
+        "3",
+        0
+      ]
+    },
+    "class_type": "KSampler"
+  },
+  "2": {
+    "inputs": {
+      "ckpt_name": "01真人\\realisticMixXL_v10.safetensors"
+    },
+    "class_type": "CheckpointLoaderSimple"
+  },
+  "3": {
+    "inputs": {
+      "width": 736,
+      "height": 1032,
+      "batch_size": 1
+    },
+    "class_type": "EmptyLatentImage"
+  },
+  "4": {
+    "inputs": {
+      "text": [
+        "51",
+        0
+      ],
+      "speak_and_recognation": true,
+      "clip": [
+        "2",
+        1
+      ]
+    },
+    "class_type": "CLIPTextEncode"
+  },
+  "5": {
+    "inputs": {
+      "text": "NSFW,",
+      "speak_and_recognation": true,
+      "clip": [
+        "2",
+        1
+      ]
+    },
+    "class_type": "CLIPTextEncode"
+  },
+  "6": {
+    "inputs": {
+      "samples": [
+        "1",
+        0
+      ],
+      "vae": [
+        "2",
+        2
+      ]
+    },
+    "class_type": "VAEDecode"
+  },
+  "7": {
+    "inputs": {
+      "ip_weight": 1.5,
+      "cn_strength": 1,
+      "start_at": 0,
+      "end_at": 1,
+      "noise": 0.7000000000000001,
+      "combine_embeds": "average",
+      "instantid": [
+        "8",
+        0
+      ],
+      "insightface": [
+        "9",
+        0
+      ],
+      "control_net": [
+        "10",
+        0
+      ],
+      "image": [
+        "18",
+        0
+      ],
+      "model": [
+        "2",
+        0
+      ],
+      "positive": [
+        "4",
+        0
+      ],
+      "negative": [
+        "5",
+        0
+      ],
+      "image_kps": [
+        "11",
+        0
+      ]
+    },
+    "class_type": "ApplyInstantIDAdvanced"
+  },
+  "8": {
+    "inputs": {
+      "instantid_file": "ip-adapter.bin"
+    },
+    "class_type": "InstantIDModelLoader"
+  },
+  "9": {
+    "inputs": {
+      "provider": "CUDA"
+    },
+    "class_type": "InstantIDFaceAnalysis"
+  },
+  "10": {
+    "inputs": {
+      "control_net_name": "diffusion_pytorch_model.safetensors"
+    },
+    "class_type": "ControlNetLoader"
+  },
+  "11": {
+    "inputs": {
+      "image": "微信图片_20241118141133.png",
+      "upload": "image"
+    },
+    "class_type": "LoadImage"
+  },
+  "12": {
+    "inputs": {
+      "faceanalysis": [
+        "9",
+        0
+      ],
+      "image": [
+        "11",
+        0
+      ]
+    },
+    "class_type": "FaceKeypointsPreprocessor"
+  },
+  "13": {
+    "inputs": {
+      "images": [
+        "12",
+        0
+      ]
+    },
+    "class_type": "PreviewImage"
+  },
+  "14": {
+    "inputs": {
+      "weight": 1,
+      "weight_type": "linear",
+      "combine_embeds": "concat",
+      "start_at": 0,
+      "end_at": 1,
+      "embeds_scaling": "V only",
+      "model": [
+        "15",
+        0
+      ],
+      "ipadapter": [
+        "15",
+        1
+      ],
+      "image": [
+        "18",
+        0
+      ],
+      "clip_vision": [
+        "16",
+        0
+      ]
+    },
+    "class_type": "IPAdapterAdvanced"
+  },
+  "15": {
+    "inputs": {
+      "preset": "STANDARD (medium strength)",
+      "model": [
+        "7",
+        0
+      ]
+    },
+    "class_type": "IPAdapterUnifiedLoader"
+  },
+  "16": {
+    "inputs": {
+      "clip_name": "CLIP-ViT-H-14-laion2B-s32B-b79K.safetensors"
+    },
+    "class_type": "CLIPVisionLoader"
+  },
+  "18": {
+    "inputs": {
+      "image": "T062M000003oN1UJ0vtdqH.webp",
+      "upload": "image"
+    },
+    "class_type": "LoadImage"
+  },
+  "19": {
+    "inputs": {
+      "control_net_name": "diffusion_pytorch_model_promax.safetensors"
+    },
+    "class_type": "ControlNetLoader"
+  },
+  "20": {
+    "inputs": {
+      "preprocessor": "OpenposePreprocessor",
+      "resolution": 512,
+      "image": [
+        "11",
+        0
+      ]
+    },
+    "class_type": "AIO_Preprocessor"
+  },
+  "21": {
+    "inputs": {
+      "strength": 0.7000000000000001,
+      "start_percent": 0,
+      "end_percent": 1,
+      "positive": [
+        "7",
+        1
+      ],
+      "negative": [
+        "7",
+        2
+      ],
+      "control_net": [
+        "19",
+        0
+      ],
+      "vae": [
+        "2",
+        2
+      ],
+      "image": [
+        "20",
+        0
+      ]
+    },
+    "class_type": "ControlNetApplySD3"
+  },
+  "22": {
+    "inputs": {
+      "images": [
+        "20",
+        0
+      ]
+    },
+    "class_type": "PreviewImage"
+  },
+  "23": {
+    "inputs": {
+      "control_net_name": "diffusion_pytorch_model_promax.safetensors"
+    },
+    "class_type": "ControlNetLoader"
+  },
+  "24": {
+    "inputs": {
+      "preprocessor": "CannyEdgePreprocessor",
+      "resolution": 512,
+      "image": [
+        "11",
+        0
+      ]
+    },
+    "class_type": "AIO_Preprocessor"
+  },
+  "25": {
+    "inputs": {
+      "strength": 0.5,
+      "start_percent": 0,
+      "end_percent": 1,
+      "positive": [
+        "21",
+        0
+      ],
+      "negative": [
+        "21",
+        1
+      ],
+      "control_net": [
+        "23",
+        0
+      ],
+      "vae": [
+        "2",
+        2
+      ],
+      "image": [
+        "24",
+        0
+      ]
+    },
+    "class_type": "ControlNetApplySD3"
+  },
+  "26": {
+    "inputs": {
+      "images": [
+        "24",
+        0
+      ]
+    },
+    "class_type": "PreviewImage"
+  },
+  "27": {
+    "inputs": {
+      "model": "wd-v1-4-moat-tagger-v2",
+      "threshold": 0.35,
+      "character_threshold": 0.85,
+      "replace_underscore": false,
+      "trailing_comma": false,
+      "exclude_tags": "",
+      "tags": "1girl, solo, breasts, looking_at_viewer, short_hair, large_breasts, brown_hair, cleavage, brown_eyes, parted_lips, lips, realistic",
+      "image": [
+        "11",
+        0
+      ]
+    },
+    "class_type": "WD14Tagger|pysssss"
+  },
+  "28": {
+    "inputs": {
+      "images": [
+        "6",
+        0
+      ]
+    },
+    "class_type": "PreviewImage"
+  },
+  "50": {
+    "inputs": {
+      "text": [
+        "27",
+        0
+      ],
+      "text2": "1girl, solo, breasts, looking_at_viewer, short_hair, large_breasts, brown_hair, cleavage, brown_eyes, parted_lips, lips, realistic"
+    },
+    "class_type": "ShowText|pysssss"
+  },
+  "51": {
+    "inputs": {
+      "delimiter": ", ",
+      "clean_whitespace": "true",
+      "text_a": [
+        "27",
+        0
+      ],
+      "text_b": [
+        "52",
+        0
+      ],
+      "text_c": [
+        "53",
+        0
+      ],
+      "text_d": [
+        "55",
+        0
+      ]
+    },
+    "class_type": "Text Concatenate"
+  },
+  "52": {
+    "inputs": {
+      "string": "big breates,smile,bikini,"
+    },
+    "class_type": "Primitive string [Crystools]"
+  },
+  "53": {
+    "inputs": {
+      "string": "Kneeling on the grass"
+    },
+    "class_type": "Primitive string [Crystools]"
+  },
+  "55": {
+    "inputs": {
+      "string": "cyberpunk style"
+    },
+    "class_type": "Primitive string [Crystools]"
+  },
+  "56": {
+    "inputs": {
+      "control_net_name": "diffusion_pytorch_model_promax.safetensors"
+    },
+    "class_type": "ControlNetLoader"
+  },
+  "57": {
+    "inputs": {
+      "preprocessor": "DepthAnythingV2Preprocessor",
+      "resolution": 512,
+      "image": [
+        "11",
+        0
+      ]
+    },
+    "class_type": "AIO_Preprocessor"
+  },
+  "58": {
+    "inputs": {
+      "strength": 0.7000000000000001,
+      "start_percent": 0,
+      "end_percent": 1,
+      "positive": [
+        "21",
+        0
+      ],
+      "negative": [
+        "21",
+        1
+      ],
+      "control_net": [
+        "56",
+        0
+      ],
+      "vae": [
+        "2",
+        2
+      ],
+      "image": [
+        "57",
+        0
+      ]
+    },
+    "class_type": "ControlNetApplySD3"
+  },
+  "59": {
+    "inputs": {
+      "images": [
+        "57",
+        0
+      ]
+    },
+    "class_type": "PreviewImage"
+  }
+}
