@@ -113,7 +113,7 @@ func (client *Client) Workflow(path string) (*WorkflowDetail, error) {
 
 	req, err := http.NewRequest(apiMethod, apiUrl.String(), nil)
 	if err != nil {
-		panic(err)
+		client.log.Error(err)
 		return nil, err
 	}
 
@@ -121,24 +121,24 @@ func (client *Client) Workflow(path string) (*WorkflowDetail, error) {
 
 	resp, err := client.client.Do(req)
 	if err != nil {
-		panic(err)
+		client.log.Error(err)
 		return nil, err
 	}
 	defer resp.Body.Close()
 
+	if resp.StatusCode != 200 {
+		return nil, ErrorsServerError
+	}
+
 	body, err := io.ReadAll(resp.Body)
 	if err != nil {
-		panic(err)
+		client.log.Error(err)
 		return nil, err
 	}
 
 	rs := &WorkflowDetail{}
 	err = json.Unmarshal(body, rs)
 	if err != nil {
-		fmt.Println(req.URL)
-		fmt.Println(resp.StatusCode)
-		fmt.Println(string(body))
-		panic(err)
 		return nil, err
 	}
 

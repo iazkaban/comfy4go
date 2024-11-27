@@ -14,7 +14,17 @@ type PromptResponse struct {
 	PromptID   string   `json:"prompt_id"`
 }
 
-func (client *Client) Prompt(requestBody interface{}) (*PromptResponse, error) {
+type PromptRequest struct {
+	ClientID  string `json:"client_id"`
+	ExtraData struct {
+		ExtraPngInfo struct {
+			WorkFlow json.RawMessage `json:"work_flow"`
+		} `json:"extra_pnginfo"`
+	} `json:"extra_data"`
+	Prompt json.RawMessage `json:"prompt"`
+}
+
+func (client *Client) Prompt(requestBody *PromptRequest) (*PromptResponse, error) {
 	apiUri := "/api/prompt"
 	apiMethod := http.MethodPost
 

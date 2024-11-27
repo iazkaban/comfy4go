@@ -51,7 +51,7 @@ func (client *Client) GetUsers() (*UserList, error) {
 
 	err = json.Unmarshal(body, userList)
 	if err != nil {
-		panic(err)
+		client.log.Error(err)
 		return nil, err
 	}
 
