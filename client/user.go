@@ -2,23 +2,13 @@ package client
 
 import (
 	"encoding/json"
+	"github.com/iazkaban/comfy4go/model"
 	"io"
 	"net/http"
 	"net/url"
 )
 
-type User struct {
-	UserID   string
-	UserName string
-}
-
-type UserList struct {
-	Storage string            `json:"storage"`
-	M       map[string]string `json:"users"`
-	Users   []*User           `json:"-"`
-}
-
-func (client *Client) GetUsers() (*UserList, error) {
+func (client *Client) GetUsers() (*model.UserList, error) {
 	apiUri := "/api/users"
 	apiMethod := http.MethodGet
 
@@ -44,7 +34,7 @@ func (client *Client) GetUsers() (*UserList, error) {
 		return nil, err
 	}
 
-	userList := &UserList{
+	userList := &model.UserList{
 		Storage: "",
 		M:       make(map[string]string),
 	}
@@ -56,9 +46,9 @@ func (client *Client) GetUsers() (*UserList, error) {
 	}
 
 	if len(userList.M) > 0 {
-		userList.Users = make([]*User, 0, len(userList.M))
+		userList.Users = make([]*model.User, 0, len(userList.M))
 		for k, v := range userList.M {
-			u := &User{
+			u := &model.User{
 				UserID:   k,
 				UserName: v,
 			}

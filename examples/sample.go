@@ -5,7 +5,8 @@ import (
 	"fmt"
 	"github.com/google/uuid"
 	"github.com/iazkaban/comfy4go/client"
-	"github.com/iazkaban/comfy4go/client/websocket_message_model"
+	"github.com/iazkaban/comfy4go/model"
+	"github.com/iazkaban/comfy4go/model/websocket_message_model"
 	"github.com/tidwall/sjson"
 	"math/rand/v2"
 	"os"
@@ -17,7 +18,7 @@ func main() {
 	wg := &sync.WaitGroup{}
 	opt := &client.ClientOption{
 		Host:     "127.0.0.1",
-		Port:     8818,
+		Port:     8188,
 		Wg:       wg,
 		ClientID: uuid.New().String(),
 	}
@@ -197,7 +198,7 @@ func main() {
 	//生成随机Seed
 	fBody, _ = sjson.SetBytes(fBody, "1.inputs.seed", rand.Int64())
 
-	req := &client.PromptRequest{}
+	req := &model.PromptRequest{}
 	req.ClientID = c.ClientID
 	req.ExtraData.ExtraPngInfo.WorkFlow = rsw
 	req.Prompt = fBody

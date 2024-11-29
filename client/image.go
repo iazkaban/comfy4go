@@ -5,7 +5,8 @@ import (
 	"encoding/json"
 	"errors"
 	"fmt"
-	"github.com/iazkaban/comfy4go/client/websocket_message_model"
+	"github.com/iazkaban/comfy4go/model"
+	"github.com/iazkaban/comfy4go/model/websocket_message_model"
 	"io"
 	"math/rand"
 	"mime/multipart"
@@ -19,12 +20,6 @@ import (
 var (
 	ErrorContentTypeIsUnknown = errors.New("content type is unknown")
 )
-
-type UpLoadImage struct {
-	Name      string `json:"name"`
-	SubFolder string `json:"subfolder"`
-	Type      string `json:"type"`
-}
 
 func (client *Client) DownloadImage(info *websocket_message_model.Image) (string, []byte, error) {
 	apiUri := "/api/view"
@@ -73,7 +68,7 @@ func (client *Client) DownloadImage(info *websocket_message_model.Image) (string
 	return "", body, ErrorContentTypeIsUnknown
 }
 
-func (client *Client) UploadImage(filename string, body []byte) (*UpLoadImage, error) {
+func (client *Client) UploadImage(filename string, body []byte) (*model.UpLoadImage, error) {
 	_, filename = path.Split(filename)
 	apiUri := "/api/upload/image"
 	apiMethod := http.MethodPost
@@ -113,7 +108,7 @@ func (client *Client) UploadImage(filename string, body []byte) (*UpLoadImage, e
 		return nil, err
 	}
 
-	rs := &UpLoadImage{}
+	rs := &model.UpLoadImage{}
 	err = json.Unmarshal(respBody, rs)
 	if err != nil {
 		return nil, err
@@ -122,7 +117,7 @@ func (client *Client) UploadImage(filename string, body []byte) (*UpLoadImage, e
 	return rs, nil
 }
 
-func (client *Client) UploadImageFile(filename string) (*UpLoadImage, error) {
+func (client *Client) UploadImageFile(filename string) (*model.UpLoadImage, error) {
 	apiUri := "/api/upload/image"
 	apiMethod := http.MethodPost
 
@@ -168,7 +163,7 @@ func (client *Client) UploadImageFile(filename string) (*UpLoadImage, error) {
 		return nil, err
 	}
 
-	rs := &UpLoadImage{}
+	rs := &model.UpLoadImage{}
 	err = json.Unmarshal(respBody, rs)
 	if err != nil {
 		return nil, err
