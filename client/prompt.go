@@ -3,28 +3,13 @@ package client
 import (
 	"bytes"
 	"encoding/json"
+	"github.com/iazkaban/comfy4go/model"
 	"io"
 	"net/http"
 	"net/url"
 )
 
-type PromptResponse struct {
-	NodeErrors struct{} `json:"node_errors"`
-	Number     int      `json:"number"`
-	PromptID   string   `json:"prompt_id"`
-}
-
-type PromptRequest struct {
-	ClientID  string `json:"client_id"`
-	ExtraData struct {
-		ExtraPngInfo struct {
-			WorkFlow json.RawMessage `json:"work_flow"`
-		} `json:"extra_pnginfo"`
-	} `json:"extra_data"`
-	Prompt json.RawMessage `json:"prompt"`
-}
-
-func (client *Client) Prompt(requestBody *PromptRequest) (*PromptResponse, error) {
+func (client *Client) Prompt(requestBody *model.PromptRequest) (*model.PromptResponse, error) {
 	apiUri := "/api/prompt"
 	apiMethod := http.MethodPost
 
@@ -57,7 +42,7 @@ func (client *Client) Prompt(requestBody *PromptRequest) (*PromptResponse, error
 		return nil, err
 	}
 
-	rs := &PromptResponse{}
+	rs := &model.PromptResponse{}
 	err = json.Unmarshal(body, rs)
 	if err != nil {
 		return nil, err
