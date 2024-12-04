@@ -1,7 +1,11 @@
+github.com/chrisbward/go-png-chunks v0.0.0-20230712061038-556dcc1a758d h1:HKFE+XWyC0LY8ORQsP0fF1hwtj+ZY1mwNdkbR/dR1H4=
+github.com/chrisbward/go-png-chunks v0.0.0-20230712061038-556dcc1a758d/go.mod h1:PF0JOKDYG/DdOOUVWL6mDd6bwQHDYN5R18PnFsM6dqQ=
 github.com/google/uuid v1.6.0 h1:NIvaJDMOsjHA8n1jAhLSgzrAzy1Hgr+hNrb57e+94F0=
 github.com/google/uuid v1.6.0/go.mod h1:TIyPZe4MgqvfeYDBFedMoGGpEw/LqOeaOT+nhxU+yHo=
 github.com/gorilla/websocket v1.5.3 h1:saDtZ6Pbx/0u+bgYQ3q96pZgCzfhKXGPqt7kZ72aNNg=
 github.com/gorilla/websocket v1.5.3/go.mod h1:YR8l580nyteQvAITg2hZ9XVh4b55+EU/adAjf1fMHhE=
+github.com/murkland/pngchunks v0.0.0-20220305211659-3f322c254e68 h1:m/83dMW0EpFweuOEJiHUsdtKwcqxdLj91LYM+i91zBg=
+github.com/murkland/pngchunks v0.0.0-20220305211659-3f322c254e68/go.mod h1:R10AASouoLqvXfvNYg87Ks/ScgVocSvO/sj173nU8nE=
 github.com/tidwall/gjson v1.14.2/go.mod h1:/wbyibRr2FHMks5tjHJ5F8dMZh3AcwJEMf5vlfC0lxk=
 github.com/tidwall/gjson v1.18.0 h1:FIDeeyB800efLX89e5a8Y0BNH+LOngJyGrIWxG2FKQY=
 github.com/tidwall/gjson v1.18.0/go.mod h1:/wbyibRr2FHMks5tjHJ5F8dMZh3AcwJEMf5vlfC0lxk=

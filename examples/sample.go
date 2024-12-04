@@ -7,6 +7,7 @@ import (
 	"github.com/iazkaban/comfy4go/client"
 	"github.com/iazkaban/comfy4go/model"
 	"github.com/iazkaban/comfy4go/model/websocket_message_model"
+	"github.com/iazkaban/comfy4go/utils/message_cleaner"
 	"github.com/tidwall/sjson"
 	"math/rand/v2"
 	"os"
@@ -122,6 +123,13 @@ func main() {
 				fmt.Println("Save File Error:", err)
 				continue
 			}
+
+			body, err = message_cleaner.CleanPngTEXt(body)
+			if err != nil {
+				fmt.Println("Clean tEXt message Error:", err)
+				continue
+			}
+
 			_, err = f.Write(body)
 			if err != nil {
 				fmt.Println("Error:", err)
