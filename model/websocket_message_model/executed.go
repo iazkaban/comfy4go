@@ -9,7 +9,8 @@ type Executed struct {
 }
 
 type Output struct {
-	Images []*Image `json:"images"`
+	Images []*Image `json:"images,omitempty"`
+	Text   []string `json:"text,omitempty"`
 }
 
 type Image struct {

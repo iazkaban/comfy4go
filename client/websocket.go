@@ -63,7 +63,7 @@ func (client *Client) listenWebsocket() {
 			continue
 		}
 
-		go func() {
+		func() {
 			websocketMessageProcessorLock.RLock()
 			defer websocketMessageProcessorLock.RUnlock()
 
