@@ -38,7 +38,7 @@ func main() {
 		return nil
 	})
 
-	c.RegisterMessageProcessor("status", func(message *client.BaseWebsocketMessage) error {
+	c.RegisterMessageProcessor(websocket_message_model.WebsocketMessageTypeStatus, func(message *client.BaseWebsocketMessage) error {
 		rs := &websocket_message_model.Status{}
 		err = json.Unmarshal(message.Data, rs)
 		if err != nil {
@@ -49,7 +49,7 @@ func main() {
 		return nil
 	})
 
-	c.RegisterMessageProcessor("execution_start", func(message *client.BaseWebsocketMessage) error {
+	c.RegisterMessageProcessor(websocket_message_model.WebsocketMessageTypeExecutionStart, func(message *client.BaseWebsocketMessage) error {
 		rs := &websocket_message_model.ExecutionStart{}
 		err = json.Unmarshal(message.Data, rs)
 		if err != nil {
@@ -60,12 +60,12 @@ func main() {
 		return nil
 	})
 
-	c.RegisterMessageProcessor("execution_cached", func(message *client.BaseWebsocketMessage) error {
+	c.RegisterMessageProcessor(websocket_message_model.WebsocketMessageTypeExecutionCached, func(message *client.BaseWebsocketMessage) error {
 		fmt.Println("[Websocket传递信息处理器]===>execution_cached信息返回，不是重要节点，不做解析")
 		return nil
 	})
 
-	c.RegisterMessageProcessor("executing", func(message *client.BaseWebsocketMessage) error {
+	c.RegisterMessageProcessor(websocket_message_model.WebsocketMessageTypeExecuting, func(message *client.BaseWebsocketMessage) error {
 		rs := &websocket_message_model.Executing{}
 		err = json.Unmarshal(message.Data, rs)
 		if err != nil {
@@ -76,7 +76,7 @@ func main() {
 		return nil
 	})
 
-	c.RegisterMessageProcessor("progress", func(message *client.BaseWebsocketMessage) error {
+	c.RegisterMessageProcessor(websocket_message_model.WebsocketMessageTypeProgress, func(message *client.BaseWebsocketMessage) error {
 		rs := &websocket_message_model.Progress{}
 		err = json.Unmarshal(message.Data, rs)
 		if err != nil {
@@ -92,7 +92,7 @@ func main() {
 		return nil
 	})
 
-	c.RegisterMessageProcessor("execution_success", func(message *client.BaseWebsocketMessage) error {
+	c.RegisterMessageProcessor(websocket_message_model.WebsocketMessageTypeExecutionSuccess, func(message *client.BaseWebsocketMessage) error {
 		rs := &websocket_message_model.ExecutionSuccess{}
 		err = json.Unmarshal(message.Data, rs)
 		if err != nil {
@@ -103,7 +103,7 @@ func main() {
 		return nil
 	})
 
-	c.RegisterMessageProcessor("executed", func(message *client.BaseWebsocketMessage) error {
+	c.RegisterMessageProcessor(websocket_message_model.WebsocketMessageTypeExecuted, func(message *client.BaseWebsocketMessage) error {
 		rs := &websocket_message_model.Executed{}
 		err = json.Unmarshal(message.Data, rs)
 		if err != nil {

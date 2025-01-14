@@ -19,6 +19,7 @@ func (client *Client) Prompt(requestBody *model.PromptRequest) (*model.PromptRes
 		Path:   apiUri,
 	}
 
+	requestBody.ClientID = client.ClientID
 	reqBody, err := json.Marshal(requestBody)
 	if err != nil {
 		return nil, err
